@@ -1,0 +1,13 @@
+/* app.css - basic styles for Svelte app */
+body {
+  margin: 0;
+  font-family: system-ui, sans-serif;
+  background: #f9f9f9;
+  color: #222;
+}
+
+#app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
