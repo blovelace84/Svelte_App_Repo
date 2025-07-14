@@ -3,6 +3,7 @@
   let src = '/sonic.jpg';
   let count = $state(0);
   let numbers = $state([1, 2, 3, 4]);
+  let total = $derived(numbers.reduce((t, n) => t + n, 0));
   function addNumber() {
     numbers[numbers.length] = numbers.length + 1;
   }
@@ -22,7 +23,7 @@
   Clicked {count}
   {count === 1 ? 'time' : 'times'}
 </button>
-<p>{numbers.join(' + ')} = ...</p>
+<p>{numbers.join(' + ')} = {total}</p>
 <button onclick={addNumber}>
   Add a number
 </button>
