@@ -1,6 +1,7 @@
 <script lang="ts">
   let name = 'Brittani'
   let src = '/sonic.jpg';
+  import Counter from "./Counter.svelte";
   let elapsed = $state(0);
   let interval = $state(1000);
   let count = $state(0);
@@ -29,6 +30,9 @@
 <p>This is a paragraph</p>
 <p>{@html string}</p>
 <Nested />
+<Counter />
+<Counter />
+<Counter />
 <h1>Hello, {name.toUpperCase()}</h1>
 <img src={src} alt="{name}" />
 <button onclick={increment}>
