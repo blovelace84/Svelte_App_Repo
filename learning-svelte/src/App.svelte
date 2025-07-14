@@ -1,6 +1,8 @@
 <script lang="ts">
   let name = 'Brittani'
   let src = '/sonic.jpg';
+  let elapsed = $state(0);
+  let interval = $state(1000);
   let count = $state(0);
   let numbers = $state([1, 2, 3, 4]);
   let total = $derived(numbers.reduce((t, n) => t + n, 0));
@@ -8,6 +10,14 @@
     numbers.push(numbers.length + 1);
     console.log($state.snapshot(numbers));
   }
+  $effect(() => {
+    const id = setInterval(() => {
+      elapsed += 1;
+    }, interval);
+    return () => {
+      clearInterval(id);
+    };
+  });
   $inspect(numbers);
   function increment() {
     count += 1
@@ -29,6 +39,9 @@
 <button onclick={addNumber}>
   Add a number
 </button>
+<button onclick={() => interval /=2}>speed up</button>
+<button onclick={() => interval *=2}>slow down</button>
+<p>elapsed: {elapsed}</p>
 <style>
   p{
     color: goldenrod;
