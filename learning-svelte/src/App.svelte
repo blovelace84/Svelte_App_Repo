@@ -30,6 +30,7 @@
 <p>This is a paragraph</p>
 <p>{@html string}</p>
 <Nested />
+<Nested answer={"42"}/>
 <Counter />
 <Counter />
 <Counter />
