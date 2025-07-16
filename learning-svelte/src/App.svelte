@@ -11,6 +11,7 @@
     numbers.push(numbers.length + 1);
     console.log($state.snapshot(numbers));
   }
+
   $effect(() => {
     const id = setInterval(() => {
       elapsed += 1;
@@ -48,6 +49,11 @@
   Clicked {count}
   {count === 1 ? 'time' : 'times'}
 </button>
+{#if count > 10}
+<p>{count} is greater than 10</p>
+{:else}
+<p>{count} is between 0 10</p>
+{/if}
 <p>{numbers.join(' + ')} = {total}</p>
 <button onclick={addNumber}>
   Add a number
