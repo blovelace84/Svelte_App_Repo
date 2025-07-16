@@ -19,17 +19,25 @@
       clearInterval(id);
     };
   });
+  const pkg = {
+    name: 'svelte',
+    version: 5,
+    description: 'blazing fast',
+    website: 'https://svelt.dev'
+  };
   $inspect(numbers);
   function increment() {
     count += 1
   }
   let string = `this string contains some <strong>HTML!!!</strong>`;
   import Nested from "./Nested.svelte";
+    import PackageInfo from "./PackageInfo.svelte";
 </script>
 
 <p>This is a paragraph</p>
 <p>{@html string}</p>
 <Nested />
+<PackageInfo {...pkg}/>
 <Nested answer={"42"}/>
 <Counter />
 <Counter />
