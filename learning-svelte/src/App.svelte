@@ -108,6 +108,10 @@
   <Thing name= {thing.name} />  
 {/each}
 
+<div onkeydown={(e) => alert(`<div>${e.key}`)} role="presentation">
+  <input type="text" onkeydown={(e) => alert(`<input> ${e.key}`)} />
+</div>
+
 <style>
   p{
     color: goldenrod;
