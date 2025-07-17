@@ -1,6 +1,7 @@
 <script lang="ts">
   let name = 'Brittani'
   let src = '/sonic.jpg';
+  let value = $state(0);
   let m = $state({ x: 0, y: 0});
   
   const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
@@ -8,6 +9,7 @@
   import Counter from "./Counter.svelte";
   import Thing from "./Thing.svelte";
   import { roll } from "./utils";
+  import Stepper from "./Stepper.svelte";
    let promise = $state(roll());
   let elapsed = $state(0);
   let interval = $state(1000);
@@ -50,6 +52,7 @@
 </script>
 
 <p>This is a paragraph</p>
+<p>The current value is {value}</p>
 <p>{@html string}</p>
 <Nested />
 <PackageInfo {...pkg}/>
@@ -57,6 +60,10 @@
 <Counter />
 <Counter />
 <Counter />
+<Stepper 
+  increment={() => value += 1}
+  decrement={() => value -= 1}
+/>
 <h1>Hello, {name.toUpperCase()}</h1>
 <h1 style="color: {selected}">Pick a colour</h1>
 <div>
@@ -101,8 +108,13 @@
 <button onclick={() => promise = roll()}>
   roll the dice
 </button>
-{#await promise then number}
-<p>you rolled a {number}!</p>
+{#await promise}
+  <p>Rolling...</p>
+{:then number}
+  <p>you rolled a {number}!</p>
+{:catch error}
+  <p style="color: red">Error: {error.message}</p>
+  <button onclick={() => promise = roll()}>Try again</button>
 {/await}
 {#each things as thing (thing.id)}
   <Thing name= {thing.name} />  
