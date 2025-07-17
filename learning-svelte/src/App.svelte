@@ -88,11 +88,10 @@
 <button onclick={() => interval /=2}>speed up</button>
 <button onclick={() => interval *=2}>slow down</button>
 <p>elapsed: {elapsed}</p>
-<div onpointermove={(event) => {
+<div class="pointer-area" onpointermove={(event) => {
   m.x = event.clientX;
   m.y = event.clientY;
-}}
->
+}}>
   The pointer is at {Math.round(m.x)} x {Math.round(m.y)}
 </div>
 <button onclick={() => things.shift()}>
@@ -115,7 +114,7 @@
     font-family: 'Comic Sans MS', cursive;
     font-size: 2em;
   }
-  div{
+  .pointer-area {
     position: fixed;
     left: 0;
     top: 0;
