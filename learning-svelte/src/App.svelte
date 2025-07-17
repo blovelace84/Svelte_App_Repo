@@ -1,6 +1,11 @@
 <script lang="ts">
   let name = 'Brittani'
   let src = '/sonic.jpg';
+  let m = $state({ x: 0, y: 0});
+  function onpointermove(event){
+    m.x = event.clientX;
+    m.y = event.clientY;
+  }
   const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
   let selected = $state(colors[0]);
   import Counter from "./Counter.svelte";
@@ -86,9 +91,13 @@
 <button onclick={() => interval /=2}>speed up</button>
 <button onclick={() => interval *=2}>slow down</button>
 <p>elapsed: {elapsed}</p>
+<div onpointermove={onpointermove}>
+  The pointer is at {Math.round(m.x)} x {Math.round(m.y)}
+</div>
 <button onclick={() => things.shift()}>
   Remove first thing
 </button>
+
 <button onclick={() => promise = roll()}>
   roll the dice
 </button>
@@ -98,10 +107,19 @@
 {#each things as thing (thing.id)}
   <Thing name= {thing.name} />  
 {/each}
+
 <style>
   p{
     color: goldenrod;
     font-family: 'Comic Sans MS', cursive;
     font-size: 2em;
+  }
+  div{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    padding: 1rem;
   }
 </style>
