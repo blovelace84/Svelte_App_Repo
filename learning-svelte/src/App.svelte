@@ -1,6 +1,8 @@
 <script lang="ts">
   let name = 'Brittani'
   let src = '/sonic.jpg';
+  const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
+  let selected = $state(colors[0]);
   import Counter from "./Counter.svelte";
   let elapsed = $state(0);
   let interval = $state(1000);
@@ -44,6 +46,17 @@
 <Counter />
 <Counter />
 <h1>Hello, {name.toUpperCase()}</h1>
+<h1 style="color: {selected}">Pick a colour</h1>
+<div>
+  {#each colors as color, i}
+    <button
+      style="background: {color}"
+      aria-label={color}
+      aria-current={selected === color}
+      onclick={() => selected = color}
+    >{i + 1}</button>
+  {/each}
+</div>
 <img src={src} alt="{name}" />
 <button onclick={increment}>
   Clicked {count}
