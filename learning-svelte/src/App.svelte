@@ -2,10 +2,7 @@
   let name = 'Brittani'
   let src = '/sonic.jpg';
   let m = $state({ x: 0, y: 0});
-  function onpointermove(event){
-    m.x = event.clientX;
-    m.y = event.clientY;
-  }
+  
   const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
   let selected = $state(colors[0]);
   import Counter from "./Counter.svelte";
@@ -50,6 +47,10 @@
   let string = `this string contains some <strong>HTML!!!</strong>`;
   import Nested from "./Nested.svelte";
     import PackageInfo from "./PackageInfo.svelte";
+    function onpointermove(event){
+    m.x = event.clientX;
+    m.y = event.clientY;
+  }
 </script>
 
 <p>This is a paragraph</p>
