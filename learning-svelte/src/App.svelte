@@ -41,7 +41,7 @@
   $inspect(numbers);
   function increment() {
     count += 1
-  }
+  };
   let string = `this string contains some <strong>HTML!!!</strong>`;
   import Nested from "./Nested.svelte";
     import PackageInfo from "./PackageInfo.svelte";
