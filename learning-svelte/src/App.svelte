@@ -5,6 +5,8 @@
   let selected = $state(colors[0]);
   import Counter from "./Counter.svelte";
   import Thing from "./Thing.svelte";
+  import { roll } from "./utils";
+   let promise = $state(roll());
   let elapsed = $state(0);
   let interval = $state(1000);
   let count = $state(0);
@@ -87,7 +89,12 @@
 <button onclick={() => things.shift()}>
   Remove first thing
 </button>
-
+<button onclick={() => promise = roll()}>
+  roll the dice
+</button>
+{#await promise then number}
+<p>you rolled a {number}!</p>
+{/await}
 {#each things as thing (thing.id)}
   <Thing name= {thing.name} />  
 {/each}
