@@ -4,9 +4,17 @@
   const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'indigo', 'violet'];
   let selected = $state(colors[0]);
   import Counter from "./Counter.svelte";
+  import Thing from "./Thing.svelte";
   let elapsed = $state(0);
   let interval = $state(1000);
   let count = $state(0);
+  let things = $state([
+    {id: 1, name: 'apple'},
+    {id: 2, name: 'banana'},
+    {id: 3, name: 'carrot'},
+    {id: 4, name: 'doughnut'},
+    {id: 5, name: 'egg'}
+  ])
   let numbers = $state([1, 2, 3, 4]);
   let total = $derived(numbers.reduce((t, n) => t + n, 0));
   function addNumber() {
@@ -76,6 +84,13 @@
 <button onclick={() => interval /=2}>speed up</button>
 <button onclick={() => interval *=2}>slow down</button>
 <p>elapsed: {elapsed}</p>
+<button onclick={() => things.shift()}>
+  Remove first thing
+</button>
+
+{#each things as thing (thing.id)}
+  <Thing name= {thing.name} />  
+{/each}
 <style>
   p{
     color: goldenrod;
