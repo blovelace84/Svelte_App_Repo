@@ -47,10 +47,6 @@
   let string = `this string contains some <strong>HTML!!!</strong>`;
   import Nested from "./Nested.svelte";
     import PackageInfo from "./PackageInfo.svelte";
-    function onpointermove(event){
-    m.x = event.clientX;
-    m.y = event.clientY;
-  }
 </script>
 
 <p>This is a paragraph</p>
@@ -92,7 +88,11 @@
 <button onclick={() => interval /=2}>speed up</button>
 <button onclick={() => interval *=2}>slow down</button>
 <p>elapsed: {elapsed}</p>
-<div onpointermove={onpointermove}>
+<div onpointermove={(event) => {
+  m.x = event.clientX;
+  m.y = event.clientY;
+}}
+>
   The pointer is at {Math.round(m.x)} x {Math.round(m.y)}
 </div>
 <button onclick={() => things.shift()}>
